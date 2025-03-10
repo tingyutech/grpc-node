@@ -366,6 +366,7 @@ export class Subchannel {
       this.channelzTrace.addTrace('CT_INFO', 'Shutting down');
       unregisterChannelzRef(this.channelzRef);
       this.credentials._unref();
+      this.stopBackoff();
       process.nextTick(() => {
         this.transitionToState(
           [ConnectivityState.CONNECTING, ConnectivityState.READY],
